@@ -1,0 +1,38 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+model Product {
+    id             String              @id
+    description    String
+    value          Int
+    valueSale      Int
+    receiptProduct ProductsOnReceipt[]
+    updatedAt      DateTime?           @default(now())
+    createdAt      DateTime?           @default(now())
+}
+
+model Receipt {
+    id          String              @id
+    description String
+    updated     Int
+    products    ProductsOnReceipt[]
+    updatedAt   DateTime?           @default(now())
+    createdAt   DateTime?           @default(now())
+}
+
+model ProductsOnReceipt {
+    receipt   Receipt @relation(fields: [receiptId], references: [id])
+    receiptId String
+    product   Product @relation(fields: [productId], references: [id])
+    productId String
+    value     Int
+    amount    Int
+
+    @@id([productId, receiptId])
+}
