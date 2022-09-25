@@ -8,25 +8,25 @@ class ProductModel implements IProductInterface {
 
     async create({ id, description, value, valueSale }: IProduct): Promise<string> {
         const productAlreadyExists = await this.findById(id)
-        
+
         if (productAlreadyExists) {
             throw new Error('Product already exists')
         }
 
-        await this.prisma.create({ 
+        await this.prisma.create({
             data: {
                 id,
                 value,
                 description,
                 valueSale
-            } 
+            }
         })
 
         return id
     }
 
-    async update({ id, description, value }: IProduct): Promise<string> {
-        const productAlreadyExists = await this.findById(id)    
+    async update({ id, description, value, updatedAt }: IProduct): Promise<string> {
+        const productAlreadyExists = await this.findById(id)
 
         if (!productAlreadyExists) {
             throw new Error('Product not exists')
@@ -37,7 +37,7 @@ class ProductModel implements IProductInterface {
             data: {
                 description,
                 value,
-                updatedAt: new Date()
+                updatedAt: updatedAt || new Date()
             }
         })
 
@@ -47,11 +47,20 @@ class ProductModel implements IProductInterface {
     findById(id: string): Promise<IProduct> {
         return this.prisma.findUnique({
             where: { id }
-        })    
+        })
     }
 
     findAll(): Promise<IProduct[]> {
-        return this.prisma.findMany()
+        return this.prisma.findMany({
+            orderBy: [
+                {
+                    updatedAt: 'desc'
+                },
+                {
+                    description: 'asc'
+                }
+            ]
+        })
     }
 
     async sync(product: IProduct): Promise<string> {

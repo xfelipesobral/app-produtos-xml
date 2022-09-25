@@ -3,6 +3,8 @@ yarn.lock
 node_modules
 *.xml
 
+test.ts
+
 .env
 database/*.sqlite
 database/*.sqlite-journal

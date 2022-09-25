@@ -3,6 +3,7 @@ interface IProduct {
     description: string
     value: number
     valueSale: number
+    updatedAt?: Date
 }
 
 interface IProductInterface {

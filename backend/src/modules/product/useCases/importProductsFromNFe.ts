@@ -7,7 +7,7 @@ import Product from '../infra/service'
 import Error from '@shared/Error'
 import valueToSale from '@utils/valueToSale'
 
-async function importProductsFromNFe(uri: string): Promise<Array<IProduct>> {
+async function importProductsFromNFe(uri: string, date: Date = new Date()): Promise<Array<IProduct>> {
     let xml = ''
     const products: Array<IProduct> = []
 
@@ -45,8 +45,8 @@ async function importProductsFromNFe(uri: string): Promise<Array<IProduct>> {
     }
 
     products.forEach(({ id, description, value, valueSale }) => {
-        Product.sync({ id, value, valueSale, description }).then(() => {
-            console.log(`Product ${id} - ${description} - ${valueSale} (${value}) imported`)
+        Product.sync({ id, value, valueSale, description, updatedAt: date }).then(() => {
+            console.log(`* [${id}] Product "${description}" R$ ${value/100} (R$ ${valueSale/100}) imported [${date.toJSON()}]`)
         }).catch((e) => {
             console.log(`Product cannot be updated`)
         })

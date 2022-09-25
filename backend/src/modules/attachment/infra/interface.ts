@@ -1,7 +1,7 @@
 interface IAttachment {
     id: string
-    uri: string
-    date: Date
+    uri?: string
+    date?: Date
     read?: number
 }
 
@@ -11,6 +11,7 @@ interface IAttachmentInterface {
     findById(id: string): Promise<IAttachment>
     findByUri(uri: string): Promise<IAttachment>
     findMany(read: number): Promise<Array<IAttachment>>
+    deleteById(id: string): Promise<IAttachment>
 }
 
 export { IAttachment, IAttachmentInterface }

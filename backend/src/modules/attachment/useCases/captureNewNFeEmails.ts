@@ -2,7 +2,9 @@ import imapInit from '@shared/imapInit'
 import { simpleParser } from 'mailparser'
 
 import Error from '@shared/Error'
+
 import createAttachment from './createAttachment'
+import productsOnAttachments from '../../product/useCases/productsOnAttachments'
 
 interface IAttach {
     buffer: Buffer
@@ -84,6 +86,7 @@ async function captureNewNFeEmails() {
         const attachments = await getAttachFromEmails('L MOCCI COMERCIO DE FRUTAS LTDA')
 
         await registerFiles(attachments)
+        await productsOnAttachments()
 
         return attachments.length
     } catch (e) {

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules index.ts",
+    "test": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules test.ts",
     "build": "yarn tsc",
     "init": "node index"
   },

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import captureNewNFeEmails from 'modules/attachment/api/captureNewNFeEmails'
+import captureNewNFeEmails from '../modules/attachment/api/captureNewNFeEmails'
 
 const attachmentsRouter = Router()
 

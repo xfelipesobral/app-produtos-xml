@@ -38,7 +38,7 @@ class AttachmentModel implements IAttachmentInterface {
     async update({ id, uri, date, read }: IAttachment): Promise<string> {
         const attachAlreadyExists = await this.findById(id)
 
-        if (attachAlreadyExists) {
+        if (!attachAlreadyExists) {
             throw new Error('Attachment not exists')
         }
 
@@ -68,12 +68,22 @@ class AttachmentModel implements IAttachmentInterface {
 
     findMany(read?: number): Promise<IAttachment[]> {
         return this.prisma.findMany({
+            orderBy: {
+                date: 'asc'
+            }, 
             where: {
                 read
             }
         })
     }
     
+    async deleteById(id: string): Promise<IAttachment> {
+        const attach = await this.prisma.delete({
+            where: { id }
+        })
+        
+        return attach
+    }
 }
 
 export default AttachmentModel
