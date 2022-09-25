@@ -36,3 +36,11 @@ model ProductsOnReceipt {
 
     @@id([productId, receiptId])
 }
+
+model Attachment {
+    id         String    @id
+    uri        String
+    date       DateTime
+    read       Int
+    importedAt DateTime? @default(now())
+}

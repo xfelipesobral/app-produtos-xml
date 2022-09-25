@@ -28,3 +28,12 @@ CREATE TABLE "ProductsOnReceipt" (
     CONSTRAINT "ProductsOnReceipt_receiptId_fkey" FOREIGN KEY ("receiptId") REFERENCES "Receipt" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "ProductsOnReceipt_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Product" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+-- CreateTable
+CREATE TABLE "Attachment" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "uri" TEXT NOT NULL,
+    "date" DATETIME NOT NULL,
+    "read" INTEGER NOT NULL,
+    "importedAt" DATETIME DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,25 +1,23 @@
-import importProductsFromNFe from 'modules/product/useCases/importProductsFromNFe'
+import express from 'express'
+import { config as dotenvConfig } from 'dotenv'
 
-async function test() {
-    try {
-        await importProductsFromNFe('nfe.xml')
-    } catch (e) {
-        console.log(e)
-    }
-}
+import routes from './src/routes'
+import middlewareError from './src/middlewares/error'
 
-test()
+import { cronNewNFeEmails } from '@utils/crons'
 
-// import express from 'express'
+dotenvConfig()
 
-// import routes from './src/routes'
+const appPort = process.env.SERVER_PORT || 3300
 
-// const appPort = process.env.SERVER_PORT || 3300
+const app = express()
 
-// const app = express()
+app.use(express.json())
 
-// app.use(express.json())
+app.use(routes)
 
-// app.use(routes)
+app.use(middlewareError)
 
-// app.listen(appPort, () => console.log(`Server is running on port ${appPort}!`))
+app.listen(appPort, () => console.log(`Server is running on port ${appPort}!`))
+
+cronNewNFeEmails()
