@@ -1,0 +1,39 @@
+import * as SecureStore from 'expo-secure-store'
+
+export interface ICacheBase {
+    type: string
+    value: any
+}
+
+class CacheManager {
+    private storage: string
+
+    constructor(name: string) {
+        this.storage = name
+    }
+
+    async write(content: any) {
+        const base: ICacheBase = {
+            type: typeof content,
+            value: content
+        }
+
+        await SecureStore.setItemAsync(this.storage, JSON.stringify(base))
+    }
+
+    async read() {
+        const data = await SecureStore.getItemAsync(this.storage)
+
+        if (!data) return ''
+
+        const { value } = JSON.parse(data) as ICacheBase
+
+        return value
+    }
+
+    remove() {
+        return SecureStore.deleteItemAsync(this.storage)
+    }
+}
+
+export const cacheProducts = new CacheManager('PRODUCTS')
