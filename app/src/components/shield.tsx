@@ -32,7 +32,7 @@ const style = StyleSheet.create({
     header: {
         backgroundColor: '#ffffff',
         padding: 15,
-        paddingTop: Constants.statusBarHeight + 15,
+        paddingTop: Constants.statusBarHeight,
         borderBottomWidth: 1,
         borderColor: '#efefef',
         alignItems: 'center'

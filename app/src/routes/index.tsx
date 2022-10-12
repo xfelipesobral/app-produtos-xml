@@ -1,4 +1,5 @@
 import React from 'react'
+import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack'
 
@@ -22,6 +23,7 @@ function Routes() {
                 <Stack.Screen name='launch' component={Launch} />
                 <Stack.Screen name='home' component={Home} />
             </Stack.Navigator>
+            <StatusBar style='dark' />
         </NavigationContainer>
     )
 }
