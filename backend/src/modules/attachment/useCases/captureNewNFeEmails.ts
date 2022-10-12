@@ -1,7 +1,7 @@
-import imapInit from '@shared/imapInit'
+import imapInit from '../../../shared/imapInit'
 import { simpleParser } from 'mailparser'
 
-import Error from '@shared/Error'
+import Error from '../../../shared/Error'
 
 import createAttachment from './createAttachment'
 import productsOnAttachments from '../../product/useCases/productsOnAttachments'

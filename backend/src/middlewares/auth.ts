@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import Error from '@shared/Error'
+import Error from '../shared/Error'
 
 function auth(request: Request, response: Response, next: NextFunction) {
     const authorization = request.headers.authorization

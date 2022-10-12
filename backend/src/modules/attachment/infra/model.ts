@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 
 import { IAttachment, IAttachmentInterface } from './interface'
 
-import Error from '@shared/Error'
+import Error from '../../../shared/Error'
 
 class AttachmentModel implements IAttachmentInterface {
     private prisma = new PrismaClient().attachment

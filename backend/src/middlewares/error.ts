@@ -1,7 +1,7 @@
 import 'express-async-errors'
 import { Request, Response, NextFunction } from 'express'
 
-import AppError from '@shared/Error'
+import AppError from '../shared/Error'
 
 function error(err: Error, request: Request, response: Response, next: NextFunction) {
     if (err instanceof AppError) {

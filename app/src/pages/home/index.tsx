@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Platform } from 'react-native'
+import { View, Platform, Text } from 'react-native'
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 
@@ -23,16 +23,15 @@ function Home() {
                 showPageIndicator={false}
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color }) => {
-                        
-
                         return <SimpleLineIcons name='basket' size={24} color={primaryColor} />
                     },
                     tabBarIndicator: () => (false),
                     tabBarShowLabel: false,
+                    tabBarStyle: {
+                        borderTopWidth: 1,
+                        borderColor: '#efefef'
+                    }
                 })}
-                style={{
-                    backgroundColor: 'blue',
-                }}
             >
                 <Tab.Screen name='products' component={Products} />
             </Tab.Navigator>

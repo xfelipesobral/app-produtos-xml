@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 
 import Attachment from '../infra/service'
 
-import Error from '@shared/Error'
+import Error from '../../../shared/Error'
 
 interface ICreateAttachment {
     name?: string

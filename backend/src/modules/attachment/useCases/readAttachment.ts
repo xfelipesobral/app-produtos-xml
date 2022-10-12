@@ -1,7 +1,7 @@
 import fs from 'fs'
 import Attachment from '../infra/service'
 
-import Error from '@shared/Error'
+import Error from '../../../shared/Error'
 
 function deleteUri(uri: string) {
     try {

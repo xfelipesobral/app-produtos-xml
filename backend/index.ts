@@ -4,7 +4,7 @@ import { config as dotenvConfig } from 'dotenv'
 import routes from './src/routes'
 import middlewareError from './src/middlewares/error'
 
-import { cronNewNFeEmails } from '@utils/crons'
+import { cronNewNFeEmails } from './src/utils/crons'
 
 dotenvConfig()
 

@@ -1,7 +1,7 @@
 import { IProduct, IProductInterface } from './interface'
 import { PrismaClient } from '@prisma/client'
 
-import Error from '@shared/Error'
+import Error from '../../../shared/Error'
 
 class ProductModel implements IProductInterface {
     private prisma = new PrismaClient().product

@@ -4,8 +4,8 @@ import { parseStringPromise as readXmlFromString } from 'xml2js'
 import { IProduct } from '../infra/interface'
 import Product from '../infra/service'
 
-import Error from '@shared/Error'
-import valueToSale from '@utils/valueToSale'
+import Error from '../../../shared/Error'
+import valueToSale from '../../../utils/valueToSale'
 
 async function importProductsFromNFe(uri: string, date: Date = new Date()): Promise<Array<IProduct>> {
     let xml = ''

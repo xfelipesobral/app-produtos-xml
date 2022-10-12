@@ -1,4 +1,4 @@
-import * as SecureStore from 'expo-secure-store'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface ICacheBase {
     type: string
@@ -18,11 +18,11 @@ class CacheManager {
             value: content
         }
 
-        await SecureStore.setItemAsync(this.storage, JSON.stringify(base))
+        await AsyncStorage.setItem(this.storage, JSON.stringify(base))
     }
 
     async read() {
-        const data = await SecureStore.getItemAsync(this.storage)
+        const data = await AsyncStorage.getItem(this.storage)
 
         if (!data) return ''
 
@@ -32,7 +32,7 @@ class CacheManager {
     }
 
     remove() {
-        return SecureStore.deleteItemAsync(this.storage)
+        return AsyncStorage.removeItem(this.storage)
     }
 }
 

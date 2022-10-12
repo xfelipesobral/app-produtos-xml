@@ -1,31 +1,40 @@
 import React from 'react'
-import { Platform, View, StyleSheet } from 'react-native'
+import { Platform, View, StyleSheet, Text } from 'react-native'
+import Constants from 'expo-constants'
 
 type Props = {
     title: string
     children: React.ReactNode
-    return: boolean
+    return?: boolean
 }
 
-class Shield extends React.Component<Props> {
+function Shield({ title, children }: Props) {
 
-    render(): React.ReactNode {
-        
-        return(
-            <View style={style.container}>
-
-                <View>
-                    {this.props.children}
-                </View>
+    return (
+        <View style={style.container}>
+            <View style={style.header}>
+                <Text style={{ fontSize: 24 }}>{title}</Text>
             </View>
-        )
-    }
+            <View style={{ flex: 1 }}>
+                {children}
+            </View>
+        </View>
+    )
 }
 
-const style = {
+export default Shield
+
+const style = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom: Platform.OS === 'ios' ? 25 : 0,
-        backgroundColor: '#eeeeee'
+        backgroundColor: '#f6f6f6'
+    },
+    header: {
+        backgroundColor: '#ffffff',
+        padding: 15,
+        paddingTop: Constants.statusBarHeight + 15,
+        borderBottomWidth: 1,
+        borderColor: '#efefef',
+        alignItems: 'center'
     }
-}
+})
