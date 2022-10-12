@@ -12,5 +12,7 @@ web-build/
 .expo-shared
 .vscode
 
+src/json/config.json
+
 # macOS
 .DS_Store
